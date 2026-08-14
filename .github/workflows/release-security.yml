@@ -1,0 +1,13 @@
+name: release-security
+on:
+  pull_request:
+    types: [closed]
+permissions:
+  contents: read
+jobs:
+  security-release:
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: unabandoned/.github/.github/workflows/reusable-release-security.yml@88ce617c6af9f205012e085bf3b654159c9338ee # main
+    secrets: inherit
