@@ -1,0 +1,26 @@
+schema: 1
+
+package: "@unabandoned/stream-splicer"
+
+upstream:
+  repo: browserify/stream-splicer
+  reason: "unmaintained since 2022 while pinned to the abandoned readable-stream@2 line"
+
+summary: >-
+  A streaming pipeline with a mutable configuration — splice, push, pop,
+  shift and unshift streams into a live Duplex while data flows through it.
+
+why-forked: >-
+  A load-bearing node in the browserify module pipeline (labeled-stream-splicer
+  is built on it) that went unmaintained while still depending on
+  readable-stream@2; forked so we own the tree, migrate it onto
+  @unabandoned/readable-stream 4, and keep the readable-stream@2 copy out of the
+  browserify dependency graph for good.
+
+status: active
+
+used-by:
+  - consumer: "@unabandoned/labeled-stream-splicer"
+    purpose: "Extends the splicer with string labels for each pipeline stage."
+
+tags: [browserify, stream, pipeline, splicer]

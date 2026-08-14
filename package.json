@@ -1,27 +1,31 @@
 {
-  "name": "stream-splicer",
+  "name": "@unabandoned/stream-splicer",
   "version": "2.0.1",
   "description": "streaming pipeline with a mutable configuration",
   "main": "index.js",
   "dependencies": {
-    "inherits": "^2.0.1",
-    "readable-stream": "^2.0.2"
+    "inherits": "^2.0.4",
+    "readable-stream": "npm:@unabandoned/readable-stream@^4"
   },
   "devDependencies": {
-    "JSONStream": "^1.0.4",
-    "concat-stream": "^1.4.6",
-    "split": "^1.0.0",
-    "tape": "^4.2.0",
-    "through2": "^2.0.0"
+    "@commitlint/cli": "21.2.1",
+    "@commitlint/config-conventional": "21.2.0"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "prepare": "git config core.hooksPath .githooks || true",
+    "test": "node --test test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/browserify/stream-splicer.git"
+    "url": "git+https://github.com/unabandoned/stream-splicer.git"
   },
-  "homepage": "https://github.com/browserify/stream-splicer",
+  "bugs": {
+    "url": "https://github.com/unabandoned/stream-splicer/issues"
+  },
+  "homepage": "https://github.com/unabandoned/stream-splicer#readme",
+  "engines": {
+    "node": ">=22.12"
+  },
   "keywords": [
     "stream",
     "mutable",

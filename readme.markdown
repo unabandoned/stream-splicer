@@ -6,7 +6,6 @@ This module is similar to
 [stream-combiner](https://npmjs.org/package/stream-combiner),
 but with a pipeline configuration that can be changed at runtime.
 
-[![build status](https://travis-ci.org/browserify/stream-splicer.png?branch=master)](http://travis-ci.org/browserify/stream-splicer)
 
 # example
 
@@ -131,7 +130,7 @@ The number of streams in the pipeline
 With [npm](https://npmjs.org) do:
 
 ```
-npm install stream-splicer
+npm install @unabandoned/stream-splicer
 ```
 
 # license

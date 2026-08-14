@@ -35,9 +35,26 @@ function Pipeline (streams, opts) {
     this._options = opts;
     this._wrapOptions = { objectMode: opts.objectMode !== false };
     this._streams = [];
-    
+    this._forwarding = null;
+
+    // readable-stream 2 delivered the tail's output one pushed chunk at a
+    // time, which the original lazy `read()` pull relied on. readable-stream
+    // 3+/Node coalesce a binary readable's buffered chunks on `read()`, which
+    // both merges write boundaries (nested pipelines) and strands whatever the
+    // tail had buffered when it was spliced out (pop/splice). Forwarding the
+    // tail via its per-chunk `data` events preserves boundaries and keeps the
+    // data moving; backpressure pauses the tail when our own push fills up.
+    this._onData = function (chunk) {
+        if (Duplex.prototype.push.call(self, chunk) === false && self._forwarding) {
+            self._forwarding.pause();
+        }
+    };
+    this.on('_mutate', function () {
+        self._forward();
+    });
+
     this.splice.apply(this, [ 0, 0 ].concat(streams));
-    
+
     this.once('finish', function () {
         self._notEmpty();
         self._streams[0].end();
@@ -45,23 +62,38 @@ function Pipeline (streams, opts) {
 }
 
 Pipeline.prototype._read = function () {
-    var self = this;
     this._notEmpty();
-    
-    var r = this._streams[this._streams.length-1];
-    var buf, reads = 0;
-    while ((buf = r.read()) !== null) {
-        Duplex.prototype.push.call(this, buf);
-        reads ++;
+    this._forward();
+};
+
+Pipeline.prototype._forward = function () {
+    var tail = this._streams[this._streams.length - 1];
+    if (!tail) return;
+    if (this._forwarding !== tail) {
+        this._unforward();
+        this._forwarding = tail;
+        tail.on('data', this._onData);
     }
-    if (reads === 0) {
-        var onreadable = function () {
-            r.removeListener('readable', onreadable);
-            self.removeListener('_mutate', onreadable);
-            self._read()
-        };
-        r.once('readable', onreadable);
-        self.once('_mutate', onreadable);
+    tail.resume();
+};
+
+Pipeline.prototype._unforward = function () {
+    var prev = this._forwarding;
+    if (!prev) return;
+    prev.removeListener('data', this._onData);
+    this._forwarding = null;
+
+    if (this._streams.indexOf(prev) === -1) {
+        // `prev` was spliced out of the pipeline (e.g. pop()): its buffered
+        // output would otherwise be stranded, so flush it to our output.
+        var chunk;
+        while ((chunk = prev.read()) !== null) {
+            Duplex.prototype.push.call(this, chunk);
+        }
+    } else {
+        // `prev` is still in the pipeline, just no longer the tail; it has been
+        // re-piped to its new successor, so let that pipe carry its data.
+        prev.resume();
     }
 };
 
