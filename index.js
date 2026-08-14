@@ -68,12 +68,18 @@ Pipeline.prototype._read = function () {
 
 Pipeline.prototype._forward = function () {
     var tail = this._streams[this._streams.length - 1];
-    if (!tail) return;
-    if (this._forwarding !== tail) {
-        this._unforward();
-        this._forwarding = tail;
-        tail.on('data', this._onData);
+    if (this._forwarding === tail) {
+        // Still forwarding the same tail; just make sure it keeps flowing.
+        if (tail) tail.resume();
+        return;
     }
+    // The tail changed (splice/pop/push) or the pipeline emptied — always
+    // detach the previous forwarder, even when there is no new tail yet, so a
+    // spliced-out stream never keeps feeding our output.
+    this._unforward();
+    if (!tail) return;
+    this._forwarding = tail;
+    tail.on('data', this._onData);
     tail.resume();
 };
 
@@ -114,6 +120,10 @@ Pipeline.prototype._notEmpty = function () {
     });
     this._streams.push(stream);
     this.length = this._streams.length;
+    // The pipeline was empty and just gained a passthrough tail (e.g. after
+    // splice(0)); re-establish forwarding so its output reaches our readable
+    // side. `_notEmpty` is also reached before any tail exists, hence the guard.
+    this.emit('_mutate');
 };
 
 Pipeline.prototype.push = function (stream) {
