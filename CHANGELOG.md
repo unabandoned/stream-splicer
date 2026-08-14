@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.0...stream-splicer-v2.1.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* forward the fresh passthrough after splice(0) empties a stage ([#4](https://github.com/unabandoned/stream-splicer/issues/4)) ([e1047a3](https://github.com/unabandoned/stream-splicer/commit/e1047a33faac958b514ec0cd8ba28910d0fdaa6d))
+
 ## [2.1.0](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.0.1...stream-splicer-v2.1.0) (2026-08-14)
 
 
