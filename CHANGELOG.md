@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.1...stream-splicer-v2.1.2) (2026-08-22)
+
+
+### Dependencies & maintenance
+
+* **deps:** update commitlint monorepo to v21.2.2 ([#6](https://github.com/unabandoned/stream-splicer/issues/6)) ([434aae7](https://github.com/unabandoned/stream-splicer/commit/434aae72d6dd04d9053fc315dab28be2c50e3ec4))
+
 ## [2.1.1](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.0...stream-splicer-v2.1.1) (2026-08-14)
 
 
