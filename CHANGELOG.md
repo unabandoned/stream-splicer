@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.3](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.2...stream-splicer-v2.1.3) (2026-09-20)
+
+
+### Dependencies & maintenance
+
+* **deps:** update unabandoned/.github digest to 0c6624e ([#11](https://github.com/unabandoned/stream-splicer/issues/11)) ([8335788](https://github.com/unabandoned/stream-splicer/commit/83357884978c9f96de9299c6f0bcc87dadc9d2bd))
+* **deps:** update unabandoned/.github digest to 5389d69 ([#10](https://github.com/unabandoned/stream-splicer/issues/10)) ([ee20580](https://github.com/unabandoned/stream-splicer/commit/ee20580fd8a8fe12076b84644d4232ab9108abc2))
+
 ## [2.1.2](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.1...stream-splicer-v2.1.2) (2026-08-28)
 
 
