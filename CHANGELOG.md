@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.4](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.3...stream-splicer-v2.1.4) (2026-09-23)
+
+
+### Bug Fixes
+
+* stop dev-only commits from cutting releases ([#15](https://github.com/unabandoned/stream-splicer/issues/15)) ([eb0fdf4](https://github.com/unabandoned/stream-splicer/commit/eb0fdf49ca9fdf008d5c357a0b50ed119599b3c8))
+
 ## [2.1.3](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.2...stream-splicer-v2.1.3) (2026-09-20)
 
 
