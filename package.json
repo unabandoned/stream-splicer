@@ -1,6 +1,10 @@
 {
   "name": "@unabandoned/stream-splicer",
   "version": "2.1.4",
+  "files": [
+    "CHANGELOG.md",
+    "index.js"
+  ],
   "description": "streaming pipeline with a mutable configuration",
   "main": "index.js",
   "dependencies": {
