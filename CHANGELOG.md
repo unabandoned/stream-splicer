@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.5](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.4...stream-splicer-v2.1.5) (2026-10-09)
+
+
+### Dependencies & maintenance
+
+* use util.inherits instead of the inherits package ([#21](https://github.com/unabandoned/stream-splicer/issues/21)) ([e4eb2b9](https://github.com/unabandoned/stream-splicer/commit/e4eb2b91f17a44d1a88e8d7c463e7814159dac85))
+
 ## [2.1.4](https://github.com/unabandoned/stream-splicer/compare/stream-splicer-v2.1.3...stream-splicer-v2.1.4) (2026-09-23)
 
 

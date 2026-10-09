@@ -1,6 +1,6 @@
 {
   "name": "@unabandoned/stream-splicer",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "files": [
     "CHANGELOG.md",
     "index.js"
