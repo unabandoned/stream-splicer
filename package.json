@@ -8,7 +8,6 @@
   "description": "streaming pipeline with a mutable configuration",
   "main": "index.js",
   "dependencies": {
-    "inherits": "^2.0.4",
     "readable-stream": "npm:@unabandoned/readable-stream@^4"
   },
   "devDependencies": {
