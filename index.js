@@ -1,7 +1,7 @@
 var Duplex = require('readable-stream').Duplex;
 var PassThrough = require('readable-stream').PassThrough;
 var Readable = require('readable-stream').Readable;
-var inherits = require('inherits');
+var inherits = require('util').inherits;
 
 var nextTick = typeof setImmediate !== 'undefined'
     ? setImmediate : process.nextTick
